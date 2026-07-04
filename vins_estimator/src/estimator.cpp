@@ -449,7 +449,7 @@ bool Estimator::relativePose(Matrix3d &relative_R, Vector3d &relative_T, int &l)
     {
         vector<pair<Vector3d, Vector3d>> corres;
         corres = f_manager.getCorresponding(i, WINDOW_SIZE);
-        if (corres.size() > 20)
+        if (static_cast<int>(corres.size()) > INIT_MIN_CORRESPONDENCES)
         {
             double sum_parallax = 0;
             double average_parallax;
@@ -461,7 +461,7 @@ bool Estimator::relativePose(Matrix3d &relative_R, Vector3d &relative_T, int &l)
                 sum_parallax = sum_parallax + parallax;
             }
             average_parallax = 1.0 * sum_parallax / int(corres.size());
-            if (average_parallax * 160 > 30 && m_estimator.solveRelativeRT(corres, relative_R, relative_T))
+            if (average_parallax * FOCAL_LENGTH > INIT_PARALLAX_THRESHOLD && m_estimator.solveRelativeRT(corres, relative_R, relative_T))
             {
                 l = i;
                 ROS_WARN("average_parallax %f choose l %d and newest frame to triangulate the whole structure", average_parallax * 160, l);

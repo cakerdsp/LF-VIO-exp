@@ -2,6 +2,8 @@
 
 double INIT_DEPTH;
 double MIN_PARALLAX;
+double INIT_PARALLAX_THRESHOLD;
+int INIT_MIN_CORRESPONDENCES;
 double ACC_N, ACC_W;
 double GYR_N, GYR_W;
 
@@ -56,6 +58,11 @@ void readParameters(ros::NodeHandle &n)
     MIN_PARALLAX = fsSettings["keyframe_parallax"];
     MIN_PARALLAX = MIN_PARALLAX / FOCAL_LENGTH;
 
+    cv::FileNode init_parallax_node = fsSettings["init_parallax_threshold"];
+    INIT_PARALLAX_THRESHOLD = init_parallax_node.empty() ? 30.0 : static_cast<double>(init_parallax_node);
+    cv::FileNode init_corr_node = fsSettings["init_min_correspondences"];
+    INIT_MIN_CORRESPONDENCES = init_corr_node.empty() ? 20 : static_cast<int>(init_corr_node);
+    ROS_INFO("initialization parallax threshold: %f, min correspondences: %d", INIT_PARALLAX_THRESHOLD, INIT_MIN_CORRESPONDENCES);
     std::string OUTPUT_PATH;
     fsSettings["output_path"] >> OUTPUT_PATH;
     // VINS_RESULT_PATH = OUTPUT_PATH + "/vins_result_no_loop.csv";

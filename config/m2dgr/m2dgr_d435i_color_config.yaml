@@ -37,10 +37,10 @@ extrinsicTranslation: !!opencv-matrix
    data: [0.57711, -0.00012, 0.83333]
 
 #feature tracker parameters
-max_cnt: 250
-min_dist: 12
-freq: 20
-F_threshold: 1.5
+max_cnt: 300
+min_dist: 8
+freq: 0
+F_threshold: 2.0
 show_track: 1
 equalize: 1
 fisheye: 0
@@ -48,7 +48,9 @@ fisheye: 0
 #optimization parameters
 max_solver_time: 0.06
 max_num_iterations: 10
-keyframe_parallax: 3.0
+keyframe_parallax: 1.5
+init_parallax_threshold: 8.0
+init_min_correspondences: 12
 
 #imu parameters
 acc_n: 1.2820343288774358e-01

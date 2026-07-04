@@ -16,6 +16,8 @@ const int NUM_OF_F = 1000;
 
 extern double INIT_DEPTH;
 extern double MIN_PARALLAX;
+extern double INIT_PARALLAX_THRESHOLD;
+extern int INIT_MIN_CORRESPONDENCES;
 extern int ESTIMATE_EXTRINSIC;
 
 extern double ACC_N, ACC_W;
