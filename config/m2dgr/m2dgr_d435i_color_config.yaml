@@ -1,0 +1,77 @@
+%YAML:1.0
+
+#common parameters
+imu_topic: "/handsfree/imu"
+image_topic: "/camera/color/image_raw"
+output_path: "/tmp/lf_vio_m2dgr_d435i/"
+
+#camera calibration
+model_type: PINHOLE
+camera_name: m2dgr_d435i_color
+image_width: 640
+image_height: 480
+distortion_parameters:
+   k1: 0.148000794688248
+   k2: -0.217835187249065
+   p1: 0
+   p2: 0
+projection_parameters:
+   fx: 617.971050917033
+   fy: 616.445131524790
+   cx: 327.710279392468
+   cy: 253.976983707814
+
+# Extrinsic parameter between IMU and Camera.
+estimate_extrinsic: 0
+extrinsicRotation: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 0.0,  0.0,  1.0,
+           -1.0,  0.0,  0.0,
+           0.0,  -1.0,  0.0]
+extrinsicTranslation: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [0.57711, -0.00012, 0.83333]
+
+#feature tracker parameters
+max_cnt: 150
+min_dist: 20
+freq: 20
+F_threshold: 1.0
+show_track: 1
+equalize: 1
+fisheye: 0
+
+#optimization parameters
+max_solver_time: 0.04
+max_num_iterations: 10
+keyframe_parallax: 10.0
+
+#imu parameters
+acc_n: 1.2820343288774358e-01
+gyr_n: 2.1309311394972831e-02
+acc_w: 1.3677912958097768e-02
+gyr_w: 3.6603917782528627e-04
+g_norm: 9.805
+
+#loop closure parameters
+loop_closure: 0
+fast_relocalization: 0
+load_previous_pose_graph: 0
+pose_graph_save_path: "/tmp/lf_vio_m2dgr_d435i/pose_graph/"
+
+#unsynchronization parameters
+estimate_td: 0
+td: 0
+
+#rolling shutter parameters
+rolling_shutter: 0
+rolling_shutter_tr: 0
+
+#visualization parameters
+save_image: 0
+visualize_imu_forward: 0
+visualize_camera_size: 0.4
