@@ -1,6 +1,7 @@
 <launch>
     <arg name="config_path" default="$(find feature_tracker)/../config/m2dgr/m2dgr_left_fisheye_config.yaml" />
     <arg name="vins_path" default="$(find feature_tracker)/../config/../" />
+    <arg name="use_rviz" default="true" />
     <arg name="use_pose_graph" default="false" />
 
     <node pkg="image_transport" type="republish" name="republish_m2dgr_left_fisheye"
@@ -16,6 +17,8 @@
        <param name="config_file" type="string" value="$(arg config_path)" />
        <param name="vins_folder" type="string" value="$(arg vins_path)" />
     </node>
+
+    <include if="$(arg use_rviz)" file="$(find vins_estimator)/launch/vins_rviz.launch" />
 
     <node if="$(arg use_pose_graph)" name="pose_graph" pkg="pose_graph" type="pose_graph" output="screen">
         <param name="config_file" type="string" value="$(arg config_path)" />
