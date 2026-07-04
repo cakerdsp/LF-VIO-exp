@@ -59,8 +59,8 @@ gyr_w: 3.6603917782528627e-04
 g_norm: 9.805
 
 # loop closure parameters
-loop_closure: 1
-fast_relocalization: 1
+loop_closure: 0
+fast_relocalization: 0
 load_previous_pose_graph: 0
 pose_graph_save_path: "/tmp/lf_vio_m2dgr_left/pose_graph/"
 
@@ -73,6 +73,6 @@ rolling_shutter: 0
 rolling_shutter_tr: 0
 
 # visualization parameters
-save_image: 1
+save_image: 0
 visualize_imu_forward: 0
 visualize_camera_size: 0.4
